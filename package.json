@@ -1,0 +1,40 @@
+{
+  "name": "timezoneconverter",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A modular .jsx web application with MCP support",
+  "main": "src/index.jsx",
+  "scripts": {
+    "dev": "bun run --hot src/server.js",
+    "build": "bun build src/index.jsx --outdir ./dist --target browser --minify",
+    "start": "bun run dist/index.js",
+    "preview": "bun run --hot src/server.js",
+    "lint": "echo 'Linting not yet configured'",
+    "test": "echo 'Tests not yet configured'"
+  },
+  "keywords": [
+    "jsx",
+    "bun",
+    "mcp",
+    "timezone",
+    "converter",
+    "pwa"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  },
+  "trustedDependencies": [
+    "react",
+    "react-dom"
+  ],
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

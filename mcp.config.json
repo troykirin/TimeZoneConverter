@@ -1,0 +1,62 @@
+{
+  "mcpServers": {
+    "app-state": {
+      "command": "bun",
+      "args": ["run", "src/mcp/server.js"],
+      "description": "MCP server for exposing application state to agents",
+      "capabilities": {
+        "resources": true,
+        "tools": true
+      }
+    }
+  },
+  "version": "1.0.0",
+  "schema": {
+    "resources": [
+      {
+        "uri": "state://app/current",
+        "name": "Current App State",
+        "description": "Returns the current state of the web application"
+      },
+      {
+        "uri": "state://app/dom",
+        "name": "DOM Structure",
+        "description": "Returns the current DOM structure"
+      },
+      {
+        "uri": "state://app/components",
+        "name": "Active Components",
+        "description": "Lists all currently rendered components"
+      }
+    ],
+    "tools": [
+      {
+        "name": "get_app_state",
+        "description": "Retrieve current application state",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "component": {
+              "type": "string",
+              "description": "Optional: specific component to query"
+            }
+          }
+        }
+      },
+      {
+        "name": "inspect_element",
+        "description": "Inspect a specific DOM element",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "string",
+              "description": "CSS selector for the element"
+            }
+          },
+          "required": ["selector"]
+        }
+      }
+    ]
+  }
+}
