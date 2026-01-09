@@ -3,7 +3,15 @@
  */
 
 export const getEnv = (key, defaultValue = "") => {
-  return import.meta.env?.[key] ?? process.env?.[key] ?? defaultValue;
+  // Check browser environment first (import.meta.env for Vite/Bun)
+  if (typeof import.meta !== "undefined" && import.meta.env) {
+    return import.meta.env[key] ?? defaultValue;
+  }
+  // Fallback to Node.js environment
+  if (typeof process !== "undefined" && process.env) {
+    return process.env[key] ?? defaultValue;
+  }
+  return defaultValue;
 };
 
 export const isDevelopment = () => {
