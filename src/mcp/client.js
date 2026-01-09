@@ -18,9 +18,10 @@ class MCPClient {
    * Initialize MCP client
    */
   async init() {
-    const mcpEnabled = import.meta.env?.MCP_ENABLED === "true";
+    // Use config module for consistent environment variable handling
+    const { config } = await import("../utils/config.js");
     
-    if (!mcpEnabled) {
+    if (!config.mcp.enabled) {
       console.log("MCP integration disabled");
       return;
     }

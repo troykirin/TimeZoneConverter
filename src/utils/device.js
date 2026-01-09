@@ -3,7 +3,11 @@
  * Useful for iOS Safari specific optimizations
  */
 
+// Guard check for browser environment
+const isBrowser = typeof window !== "undefined" && typeof navigator !== "undefined";
+
 export const isIOS = () => {
+  if (!isBrowser) return false;
   return (
     /iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
@@ -11,6 +15,7 @@ export const isIOS = () => {
 };
 
 export const isSafari = () => {
+  if (!isBrowser) return false;
   return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 };
 
@@ -19,12 +24,14 @@ export const isIOSSafari = () => {
 };
 
 export const isMobile = () => {
+  if (!isBrowser) return false;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   );
 };
 
 export const isTablet = () => {
+  if (!isBrowser) return false;
   return /iPad|Android(?!.*Mobile)/i.test(navigator.userAgent);
 };
 
@@ -33,6 +40,7 @@ export const isDesktop = () => {
 };
 
 export const getViewportSize = () => {
+  if (!isBrowser) return { width: 0, height: 0 };
   return {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -40,14 +48,17 @@ export const getViewportSize = () => {
 };
 
 export const getDevicePixelRatio = () => {
+  if (!isBrowser) return 1;
   return window.devicePixelRatio || 1;
 };
 
 export const supportsStandaloneMode = () => {
+  if (!isBrowser) return false;
   return "standalone" in window.navigator;
 };
 
 export const isStandaloneMode = () => {
+  if (!isBrowser) return false;
   return (
     window.navigator.standalone === true ||
     window.matchMedia("(display-mode: standalone)").matches
@@ -55,6 +66,21 @@ export const isStandaloneMode = () => {
 };
 
 export const getBrowserInfo = () => {
+  if (!isBrowser) {
+    return {
+      isIOS: false,
+      isSafari: false,
+      isIOSSafari: false,
+      isMobile: false,
+      isTablet: false,
+      isDesktop: true,
+      isStandalone: false,
+      viewport: { width: 0, height: 0 },
+      pixelRatio: 1,
+      userAgent: "",
+    };
+  }
+  
   return {
     isIOS: isIOS(),
     isSafari: isSafari(),

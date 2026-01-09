@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./components/App.jsx";
 import { mcpClient } from "./mcp/client.js";
+import { config } from "./utils/config.js";
 import "./styles/index.css";
 
 // Initialize MCP client
@@ -12,7 +13,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 
 // Register service worker for PWA (if enabled)
-if ("serviceWorker" in navigator && import.meta.env?.ENABLE_PWA === "true") {
+if ("serviceWorker" in navigator && config.features.pwa) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")
