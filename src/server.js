@@ -77,7 +77,10 @@ Bun.serve({
   },
 });
 
-console.log(`🚀 Development server running at http://localhost:${port}`);
-console.log(`📱 Mobile-friendly and iOS Safari optimized`);
-console.log(`🔧 MCP integration enabled`);
-console.log(`\n📝 Ready for your .jsx implementation!\n`);
+console.log(`
+🚀 Development server running at http://localhost:${port}
+📱 Mobile-friendly and iOS Safari optimized
+🔧 MCP integration enabled
+
+📝 Ready for your .jsx implementation!
+`);
