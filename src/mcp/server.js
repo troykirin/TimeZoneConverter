@@ -197,7 +197,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("TimeZoneConverter MCP Server running on stdio");
+  
+  // Use config for app name if available
+  const appName = process.env.APP_NAME || "TimeZoneConverter";
+  console.error(`${appName} MCP Server running on stdio`);
 }
 
 main().catch((error) => {
